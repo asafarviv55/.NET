@@ -1,0 +1,36 @@
+﻿@page
+@model ToDoList.Pages.ContactModel
+@{
+}
+
+<h1>
+    We are:@Model.OurName
+</h1>
+<h2>
+    Please contact us at @Model.OurPhone
+</h2>
+<form method="post">
+    <button class="btn-success"> Like </button>
+    You pressed Like @Model.LikeCount times
+    <input type="hidden" asp-for="LikeCount" value="@Model.LikeCount" />
+
+    Add your todo item
+    <input type="text" asp-for="TodoItemText" />
+    <button asp-page-handler="AddTodo">Add</button>
+    
+@if (Model.MyTodos != null)
+{
+    <ul>
+        @foreach (var i in Model.MyTodos)
+        {
+            <li>
+                @i
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <b>You have nothing to do</b>
+}
+</form>
